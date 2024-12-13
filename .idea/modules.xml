@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Buchungssystem-Schulraum.iml" filepath="$PROJECT_DIR$/.idea/Buchungssystem-Schulraum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BuchungssystemSchulraum.iml" filepath="$PROJECT_DIR$/.idea/BuchungssystemSchulraum.iml" />
     </modules>
   </component>
 </project>
