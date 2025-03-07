@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BuchungssystemSchulraum</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="map">
+        {% for room in rooms %}
+            <form
+                method="post"
+                action="{% url 'book_room' id=room.name %}"
+                class="room-form"
+                style="grid-row: {{ room.top|add:1 }}; grid-column: {{ room.left|add:1 }};">
+                {% csrf_token %}
+                <button type="submit" class="room">
+                    {{ room.name }}
+                </button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>

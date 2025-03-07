@@ -1,0 +1,49 @@
+:root {
+    --tile-size: 7.5vw;
+    --room-color: #4CAF50;
+    --room-hover-color: #45a049;
+    --room-border-color: black;
+    --font-color-dark: black;
+}
+
+body {
+    font-family: "Calibri", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.map {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    background-color: #b0bec5;
+    width: auto;
+    height: auto;
+    padding: 2vw;
+    border-radius: .25em;
+}
+
+.room {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: .1em;
+    background-color: var(--room-color);
+    border: 1px solid var(--room-border-color);
+    border-radius: .25em;
+    font-size: 1.5vmax;
+    font-weight: bold;
+    width: var(--tile-size);
+    height: var(--tile-size);
+    box-sizing: border-box;
+}
+
+.room:hover {
+    background-color: var(--room-hover-color);
+}
