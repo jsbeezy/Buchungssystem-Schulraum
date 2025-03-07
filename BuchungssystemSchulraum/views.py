@@ -12,7 +12,6 @@ class HomeView(generic.TemplateView):
         def create_ring_rooms(prefix, top_offset, left_offset):
             ring_rooms = []
             positions = []
-            # Positions logic remains the same
             positions.extend([(top_offset, left_offset + i) for i in range(grid_size)])
             positions.extend([(top_offset + i, left_offset + grid_size - 1) for i in range(1, grid_size - 1)])
             positions.extend([(top_offset + grid_size - 1, left_offset + i) for i in range(grid_size - 1, -1, -1)])
@@ -20,13 +19,12 @@ class HomeView(generic.TemplateView):
 
             for i, (top, left) in enumerate(positions):
                 room_number = i + 1
-                room_name = f"{prefix}{room_number:02d}"  # New 3-digit format
-                if room_name in ["101", "105", "107", "109", "113", "201", "205", "209", "213", "215"]:  # Updated skip condition
+                room_name = f"{prefix}{room_number:02d}"
+                if room_name in ["101", "105", "107", "109", "113", "201", "205", "209", "213", "215"]:
                     continue
                 ring_rooms.append({"name": room_name, "top": top, "left": left})
             return ring_rooms
 
-        # Rest of the code remains unchanged
         rooms.extend(create_ring_rooms("1", 0, 0))
         rooms.extend(create_ring_rooms("2", 0, grid_size + 2))
 
