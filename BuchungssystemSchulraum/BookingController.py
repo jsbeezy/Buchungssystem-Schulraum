@@ -38,19 +38,25 @@ class AddBookingView(TemplateView):
         context["action"] = "ADD"
         return render(request, "booking-feedback.html", context)
 
-class EditBookingView(View):
-    def post(self, request, id):
+class EditBookingView(TemplateView):
+    def post(self, request, id, **kwargs):
         booking = get_object_or_404(Booking, id=id)
 
         booking.fromTime = request.POST.get('fromTime', booking.fromTime)
         booking.toTime = request.POST.get('toTime', booking.toTime)
         booking.save()
 
-        return JsonResponse({"message": "Booking updated", "id": booking.id})
+        context = super().get_context_data(**kwargs)
+        context["booking"] = booking
+        context["action"] = "EDIT"
+        return render(request, "booking-feedback.html", context)
 
-class DeleteBookingView(View):
-    def delete(self, request, id):
+class DeleteBookingView(TemplateView):
+    def delete(self, request, id, **kwargs):
         booking = get_object_or_404(Booking, id=id)
         booking.delete()
 
-        return JsonResponse({"message": "Booking deleted"})
+        context = super().get_context_data(**kwargs)
+        context["booking"] = booking
+        context["action"] = "DELETE"
+        return render(request, "booking-feedback.html", context)
