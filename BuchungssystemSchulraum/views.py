@@ -39,11 +39,23 @@ class HomeView(generic.TemplateView):
             self.counter += 1
         return ring_rooms
 
-class ClassRoomView(generic.TemplateView):
-    template_name = "class-room.html"
+class ClassRoomAddBookingView(generic.TemplateView):
+    template_name = "class-room-add-booking.html"
 
     def get_context_data(self, id, **kwargs):
         context = super().get_context_data(**kwargs)
         # use data model instead
         context["class_room"] = {"id": id, "name": "test"}
         return context
+
+class ClassRoomOptionsView(generic.TemplateView):
+    template_name = "class-room-option-select.html"
+
+    def get_context_data(self, id, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # use data model instead
+        context["booking"] = {"id": id}
+        return context
+
+class ClassRoomBookingsView(generic.TemplateView):
+    render_template = "class-room-bookings.html"

@@ -9,8 +9,7 @@
         {% for class_room in class_rooms %}
             <form
                 method="get"
-                action="{% url 'view_room' id=class_room.id %}"
-                class="room-form"
+                action="{% url 'class_room_options_select' id=class_room.id %}"
                 style="grid-row: {{ class_room.top|add:1 }}; grid-column: {{ class_room.left|add:1 }};">
                 <button type="submit" class="class-room">
                     {{ class_room.name }}
