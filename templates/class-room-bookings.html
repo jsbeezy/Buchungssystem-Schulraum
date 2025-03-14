@@ -20,6 +20,13 @@
                     </div>
                 </div>
             </div>
+        {% empty %}
+            <div>Keine Buchungen für diesen Klassenraum vorhanden.</div>
+	          <form
+	            method="get"
+	            action="{% url 'index' %}">
+	            <button type="submit" class="secondary-button">Zurück zur Startseite</button>
+            </form>
         {% endfor %}
     </div>
 

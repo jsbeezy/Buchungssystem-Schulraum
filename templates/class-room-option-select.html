@@ -9,12 +9,12 @@
     <div class="selection-container">
         <form
                 method="get"
-                action="{% url 'class_room_bookings' id=booking.id %}">
+                action="{% url 'class_room_bookings' id=class_room.id %}">
             <button type="submit" class="secondary-button">Buchungen anzeigen</button>
         </form>
         <form
                 method="get"
-                action="{% url 'class_room_add_booking' id=booking.id %}">
+                action="{% url 'class_room_add_booking' id=class_room.id %}">
             {% csrf_token %}
             <button type="submit" class="secondary-button">Buchung erstellen</button>
         </form>
