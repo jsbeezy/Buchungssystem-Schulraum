@@ -4,33 +4,33 @@
 
     <title>Klassenraum</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'class-room.css' %}">
+    <link rel="stylesheet" href="{% static 'class-room-add-booking.css' %}">
 
     <div class="card">
         <div class="class-room-id">Klassenraum {{ class_room.name }}</div>
-        <div class="time-fields">
-            <div class="time-field">
-                <label for="from-time">Von:</label>
-                <input type="time" id="from-time" name="from-time">
+
+        <form
+            method="post"
+            action="{% if action == 'ADD' and class_room %}{% url 'add_booking' id=class_room.id %}{% elif booking and booking.id %}{% url 'edit_booking' id=booking.id %}{% endif %}" method="post">
+            {% csrf_token %}
+            <div class="time-fields">
+                <div class="time-field">
+                    <label for="from-time">Von:</label>
+                    <input type="time" id="from-time" name="fromTime" value="{% if booking %}{{ booking.fromTime|date:"H:m" }}{% endif %}">
+                </div>
+                <div class="time-field">
+                    <label for="to-time">Bis:</label>
+                    <input type="time" id="to-time" name="toTime" value="{% if booking %}{{ booking.toTime|date:"H:m" }}{% endif %}">
+                </div>
             </div>
-            <div class="time-field">
-                <label for="to-time">Bis:</label>
-                <input type="time" id="to-time" name="to-time">
+            <div class="buttons">
+                <input type="hidden" name="room" value="{{ class_room.id }}">
+                <input type="hidden" name="user" value="{{ request.user.id }}">
+
+                <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
+                <button type="submit" class="primary-button">Speichern</button>
             </div>
-        </div>
-        <div class="buttons">
-             <form
-                method="get"
-                action="{% url 'index' %}">
-                <button type="submit" class="secondary-button">Zurück</button>
-            </form>
-            <form
-                method="post"
-                action="{% url 'add_booking' id=class_room.id %}">
-                {% csrf_token %}
-                <button type="submit" class="primary-button">Buchen</button>
-            </form>
-        </div>
+        </form>
     </div>
 
 {% endblock %}

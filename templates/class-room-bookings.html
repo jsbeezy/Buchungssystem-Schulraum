@@ -6,27 +6,36 @@
     <link rel="stylesheet" href="{% static 'class-room-bookings.css' %}">
 
     <div class="bookings-container">
+        {% if bookings %}
+        	<h3 class="center">Buchungen für Klassenraum {{ bookings.0.room.name }}</h3>
+        {% endif %}
         {% for booking in bookings %}
             <div class="card">
-                <div>Klassenraum {{ booking.name }}</div>
                 <div class="time-fields">
                     <div class="time-field">
                         <div>Von:</div>
-                        <div type="time" id="from-time">{{ booking.from_time|date:"d. M Y" }}</div>
+                        <div type="time" id="from-time">{{ booking.fromTime|date:"d. M Y H:m" }}</div>
                     </div>
                     <div class="time-field">
                         <div>Bis:</div>
-                        <div type="time" id="to-time">{{ booking.to_time|date:"d. M Y" }}</div>
+                        <div type="time" id="to-time">{{ booking.toTime|date:"d. M Y H:m" }}</div>
                     </div>
                 </div>
+            <div class="booker-field">
+	            <div>Gebucht von:</div>
+	            <div id="to-time">{{ booking.user.username }}</div>
+            </div>
             </div>
         {% empty %}
-            <div>Keine Buchungen für diesen Klassenraum vorhanden.</div>
-	          <form
-	            method="get"
-	            action="{% url 'index' %}">
-	            <button type="submit" class="secondary-button">Zurück zur Startseite</button>
-            </form>
+            <h3>Keine Buchungen für diesen Klassenraum vorhanden</h3>
+            <div class="buttons">
+	            <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
+		          <form
+		            method="get"
+		            action="{% url 'index' %}">
+		            <button type="submit" class="secondary-button">Startseite</button>
+	            </form>
+            </div>
         {% endfor %}
     </div>
 

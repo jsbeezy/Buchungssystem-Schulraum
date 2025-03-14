@@ -1,16 +1,7 @@
 .selection-container {
     display: grid;
-    justify-content: center;
-    align-content: center;
+    justify-content: end !important;
     grid-auto-flow: column;
-    --primary-hover-color: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
     column-gap: 1em;
-}
-
-.title {
-    font-size: 1em;
-    font-weight: bold;
+    row-gap: 1em;
 }

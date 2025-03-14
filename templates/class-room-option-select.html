@@ -5,8 +5,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'class-room-option-select.css' %}">
 
-    <div class="title">Optionen:</div>
+    <h3>Optionen</h3>
     <div class="selection-container">
+        <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
         <form
                 method="get"
                 action="{% url 'class_room_bookings' id=class_room.id %}">

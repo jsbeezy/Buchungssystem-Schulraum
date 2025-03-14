@@ -1,10 +1,11 @@
 from datetime import datetime
 
-from django.views import generic
+from django.shortcuts import render
+from django.views.generic import TemplateView
 from .models import Room, Booking
 
 
-class HomeView(generic.TemplateView):
+class HomeView(TemplateView):
     template_name = "index.html"
     counter = 0
     grid_size = 5
@@ -62,27 +63,20 @@ class HomeView(generic.TemplateView):
 
         return positions
 
-class ClassRoomAddBookingView(generic.TemplateView):
-    template_name = "class-room-add-booking.html"
+class ClassRoomAddBookingView(TemplateView):
 
-    def get_context_data(self, id, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["class_room"] = Room.objects.get(id=id)
-        return context
+    def get(self, request, id):
+        context = {"class_room": Room.objects.get(id=id), "action": "ADD"}
+        return render(request, 'class-room-add-booking.html', context)
 
-class ClassRoomOptionsView(generic.TemplateView):
-    template_name = "class-room-option-select.html"
+class ClassRoomOptionsView(TemplateView):
 
-    def get_context_data(self, id, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["class_room"] = Room.objects.get(id=id)
-        return context
+    def get(self, request, id):
+        context = {"class_room": Room.objects.get(id=id)}
+        return render(request, 'class-room-option-select.html', context)
 
-class ClassRoomBookingsView(generic.TemplateView):
-    template_name = "class-room-bookings.html"
+class ClassRoomBookingsView(TemplateView):
 
-    def get_context_data(self, id, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["bookings"] = Booking.objects.filter(room_id=id)
-        print("Bookings for room ID", id, ":", list(context["bookings"]))  # Convert to list for immediate evaluation
-        return context
+    def get(self, request, id):
+        context = {"bookings": Booking.objects.filter(room_id=id)}
+        return render(request, 'class-room-bookings.html', context)

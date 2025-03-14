@@ -8,21 +8,21 @@
     <div class="bookings-container">
         {% for booking in bookings %}
             <div class="card">
-                <div>Klassenraum {{ booking.name }}</div>
+                <div>Klassenraum {{ booking.room.name }}</div>
                 <div class="time-fields">
                     <div class="time-field">
                         <div>Von:</div>
-                        <div type="time" id="from-time">{{ booking.fromTime|date:"d. M Y" }}</div>
+                        <div type="time" id="from-time">{{ booking.fromTime|date:"d. M Y H:m" }}</div>
                     </div>
                     <div class="time-field">
                         <div>Bis:</div>
-                        <div type="time" id="to-time">{{ booking.toTime|date:"d. M Y" }}</div>
+                        <div type="time" id="to-time">{{ booking.toTime|date:"d. M Y H:m" }}</div>
                     </div>
                 </div>
                 <div class="buttons">
                  <form
-                    method="post"
-                    action="{% url 'edit_booking' id=booking.id %}">
+                    method="get"
+                    action="{% url 'show_edit_booking' id=booking.id %}">
                     {% csrf_token %}
                     <button type="submit" class="secondary-button">Bearbeiten</button>
                 </form>
@@ -35,7 +35,7 @@
             </div>
             </div>
         {% empty %}
-            <div>Du hast keine Buchungen getätigt.</div>
+            <h3>Du hast keine Buchungen getätigt</h3>
             <form
 	            method="get"
 	            action="{% url 'index' %}">

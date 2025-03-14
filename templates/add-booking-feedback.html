@@ -7,22 +7,13 @@
 
 	<div class="container">
         <span>
-          {% if action == "DELETE" %}
-            Buchung für
-          {% endif %}
 	        Klassenraum
             <span class="bold">{{ booking.room.name }}</span>
-            von
+            für den Zeitraum
             <span class="bold">{{ booking.fromTime|date:"d. M Y H:m" }}</span>
             bis
             <span class="bold">{{ booking.toTime|date:"d. M Y H:m" }}</span>
-	        {% if action == "ADD" %}
 		        gebucht.
-	        {% elif action == "EDIT" %}
-		        aktualisiert.
-	        {% elif action == "DELETE" %}
-		        gelöscht.
-	        {% endif %}
         </span>
 		<form
 				method="get"

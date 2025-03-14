@@ -11,9 +11,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 300px;
-    text-align: center;
     display: grid;
     row-gap: 1em;
+}
+
+.center {
+   text-align: center;
 }
 
 .time-fields {
@@ -27,7 +30,27 @@
     grid-auto-flow: column;
     align-items: center;
     justify-items: start;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0.25em;
     width: 100%;
+}
+
+.booker-field {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25em;
+    width: 100%;
+}
+
+.buttons {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 1em;
+}
+
+.buttons * {
+    width: 10em;
 }

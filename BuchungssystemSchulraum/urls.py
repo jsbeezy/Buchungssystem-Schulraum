@@ -5,8 +5,6 @@ from . import views
 from . import BookingController
 from . import RoomController
 from . import UserController
-
-app_name = "BuchungssystemSchulraum"
 urlpatterns = [
     path("", views.HomeView.as_view(), name="index"),
     path('admin/', admin.site.urls),
@@ -16,6 +14,7 @@ urlpatterns = [
     path('bookings', BookingController.BookingListView.as_view(), name='view_bookings'),
     path('bookings/<int:id>/add/', BookingController.AddBookingView.as_view(), name='add_booking'),
     path('bookings/<int:id>/edit', BookingController.EditBookingView.as_view(), name='edit_booking'),
+    path('bookings/<int:id>', BookingController.ShowEditBookingView.as_view(), name='show_edit_booking'),
     path('bookings/<int:id>/delete', BookingController.DeleteBookingView.as_view(), name='delete_booking'),
     path('rooms/', RoomController.RoomListView.as_view(), name='room_list'),
     path('rooms/add/', RoomController.AddRoomView.as_view(), name='add_room'),
@@ -26,3 +25,5 @@ urlpatterns = [
     path('users/edit/<int:id>/', UserController.EditUserView.as_view(), name='edit_user'),
     path('users/delete/<int:id>/', UserController.DeleteUserView.as_view(), name='delete_user'),
 ]
+
+app_name = "BuchungssystemSchulraum"
