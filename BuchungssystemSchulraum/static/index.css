@@ -1,21 +1,3 @@
-:root {
-    --tile-size: 7.5vw;
-    --room-color: #4CAF50;
-    --room-hover-color: #45a049;
-    --room-border-color: black;
-    --font-color-dark: black;
-}
-
-body {
-    font-family: "Calibri", sans-serif;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .map {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -27,7 +9,7 @@ body {
     border-radius: .25em;
 }
 
-.room {
+.class-room {
     display: grid;
     align-items: center;
     justify-content: center;
@@ -44,6 +26,6 @@ body {
     box-sizing: border-box;
 }
 
-.room:hover {
+.class-room:hover {
     background-color: var(--room-hover-color);
 }

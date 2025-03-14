@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bookings.css' %}">
+
+    <div class="bookings-container">
+        {% for booking in bookings %}
+            <div class="card">
+                <div class="class-room-id">Klassenraum {{ class_room.name }}</div>
+                <div class="time-fields">
+                    <div class="time-field">
+                        <div>Von:</div>
+                        <div type="time" id="from-time">{{ booking.fromTime|date:"d. M Y" }}</div>
+                    </div>
+                    <div class="time-field">
+                            <div>Bis:</div>
+                        <div type="time" id="from-time">{{ booking.fromTime|date:"d. M Y" }}</div>
+                    </div>
+                </div>
+                <div class="buttons">
+                 <form
+                    method="post"
+                    action="{% url 'edit_booking' id=booking.id %}"
+                    class="class-room-form">
+                    <button type="submit" class="button">Bearbeiten</button>
+                </form>
+                <form
+                    method="post"
+                    action="{% url 'delete_booking' id=booking.id %}"
+                    class="class-room-form">
+                    {% csrf_token %}
+                    <button type="submit" class="button">Löschen</button>
+                </form>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

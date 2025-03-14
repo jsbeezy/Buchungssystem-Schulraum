@@ -1,26 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BuchungssystemSchulraum</title>
+{% extends 'base.html' %}
+
+{% block content %}
+
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
     <div class="map">
-        {% for room in rooms %}
+        {% for class_room in class_rooms %}
             <form
-                method="post"
-                action="{% url 'book_room' id=room.name %}"
+                method="get"
+                action="{% url 'view_room' id=class_room.id %}"
                 class="room-form"
-                style="grid-row: {{ room.top|add:1 }}; grid-column: {{ room.left|add:1 }};">
-                {% csrf_token %}
-                <button type="submit" class="room">
-                    {{ room.name }}
+                style="grid-row: {{ class_room.top|add:1 }}; grid-column: {{ class_room.left|add:1 }};">
+                <button type="submit" class="class-room">
+                    {{ class_room.name }}
                 </button>
             </form>
         {% endfor %}
     </div>
-</body>
-</html>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <title>Klassenraum</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'class-room.css' %}">
+
+    <div class="card">
+        <div class="class-room-id">Klassenraum {{ class_room.name }}</div>
+        <div class="time-fields">
+            <div class="time-field">
+                <label for="from-time">Von:</label>
+                <input type="time" id="from-time" name="from-time">
+            </div>
+            <div class="time-field">
+                <label for="to-time">Bis:</label>
+                <input type="time" id="to-time" name="to-time">
+            </div>
+        </div>
+        <div class="buttons">
+             <form
+                method="get"
+                action="{% url 'index' %}"
+                class="class-room-form"
+                style="grid-row: {{ room.top|add:1 }}; grid-column: {{ room.left|add:1 }};">
+                <button type="submit" class="secondary-button">Zurück</button>
+            </form>
+            <form
+                method="post"
+                action="{% url 'add_booking' id=class_room.id %}"
+                class="class-room-form"
+                style="grid-row: {{ room.top|add:1 }}; grid-column: {{ room.left|add:1 }};">
+                {% csrf_token %}
+                <button type="submit" class="primary-button">Buchen</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+:root {
+    --tile-size: 7.5vw;
+    --room-color: #4CAF50;
+    --room-hover-color: #45a049;
+    --room-border-color: black;
+    --font-color-dark: black;
+}
+
+html {
+    font-family: "Calibri", sans-serif;
+    display: grid;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    row-gap: 2.5em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.content {
+    display: grid;
+    justify-items: center;
+}
+
+.navbar {
+    background-color: var(--room-color);
+    height: 5em;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 1em;
+    justify-items: center;
+    align-items: center;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-bottom: 1em;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.secondary-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.primary-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.secondary-button:hover {
+    background-color: #bbb;
+}
+
+.primary-button:hover {
+    background-color: #218838;
+}

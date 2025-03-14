@@ -1,0 +1,47 @@
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    display: grid;
+    row-gap: 1em;
+}
+
+.time-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-field {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: start;
+    grid-template-columns: 1fr 4fr;
+    gap: 0.25em;
+    width: 100%;
+}
+
+.time-field label {
+    font-size: 14px;
+    color: #555;
+}
+
+.time-field input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.buttons {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+}
