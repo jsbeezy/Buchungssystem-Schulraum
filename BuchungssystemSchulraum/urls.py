@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib import admin
 
 from . import views
 from . import BookingController
@@ -6,6 +7,7 @@ from . import BookingController
 app_name = "BuchungssystemSchulraum"
 urlpatterns = [
     path("", views.HomeView.as_view(), name="index"),
+    path('admin/', admin.site.urls),
     path('class-room/<int:id>/', views.ClassRoomView.as_view(), name='view_room'),
     path('bookings', BookingController.BookingsView.as_view(), name='view_bookings'),
     path('bookings/<int:id>/add/', BookingController.AddBookingView.as_view(), name='add_booking'),
