@@ -8,33 +8,34 @@
     <div class="bookings-container">
         {% for booking in bookings %}
             <div class="card">
-                <div class="class-room-id">Klassenraum {{ booking.name }}</div>
+                <div>Klassenraum {{ booking.name }}</div>
                 <div class="time-fields">
                     <div class="time-field">
                         <div>Von:</div>
                         <div type="time" id="from-time">{{ booking.from_time|date:"d. M Y" }}</div>
                     </div>
                     <div class="time-field">
-                            <div>Bis:</div>
+                        <div>Bis:</div>
                         <div type="time" id="to-time">{{ booking.to_time|date:"d. M Y" }}</div>
                     </div>
                 </div>
                 <div class="buttons">
                  <form
                     method="post"
-                    action="{% url 'edit_booking' id=booking.id %}"
-                    class="class-room-form">
+                    action="{% url 'edit_booking' id=booking.id %}">
+                    {% csrf_token %}
                     <button type="submit" class="secondary-button">Bearbeiten</button>
                 </form>
                 <form
                     method="post"
-                    action="{% url 'delete_booking' id=booking.id %}"
-                    class="class-room-form">
+                    action="{% url 'delete_booking' id=booking.id %}">
                     {% csrf_token %}
                     <button type="submit" class="secondary-button">Löschen</button>
                 </form>
             </div>
             </div>
+        {% empty %}
+            <div>Du hast keine Buchungen getätigt.</div>
         {% endfor %}
     </div>
 

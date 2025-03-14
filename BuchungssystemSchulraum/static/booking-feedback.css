@@ -1,0 +1,10 @@
+.container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    row-gap: 1em;
+}
+
+.bold {
+    font-weight: bold;
+}

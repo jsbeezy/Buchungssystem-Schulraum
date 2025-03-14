@@ -1,0 +1,31 @@
+.bookings-container {
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 1em;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    display: grid;
+    row-gap: 1em;
+}
+
+.time-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-field {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: start;
+    grid-template-columns: 1fr 4fr;
+    gap: 0.25em;
+    width: 100%;
+}

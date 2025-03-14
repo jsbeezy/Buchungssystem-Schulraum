@@ -1,9 +1,7 @@
 :root {
     --tile-size: 7.5vw;
-    --room-color: #4CAF50;
-    --room-hover-color: #45a049;
-    --room-border-color: black;
-    --font-color-dark: black;
+    --primary-color: #4CAF50;
+    --primary-hover-color: #45a049;
 }
 
 html {
@@ -28,7 +26,7 @@ body {
 }
 
 .navbar {
-    background-color: var(--room-color);
+    background-color: var(--primary-color);
     height: 5em;
     display: grid;
     grid-auto-flow: column;
@@ -45,17 +43,36 @@ a {
     font-weight: bold;
     text-decoration: none;
     height: 100%;
+    width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
+    color: black;
+}
+
+a:hover {
+    background-color: var(--primary-hover-color);
+}
+
+a:visited {
+    color: black;
 }
 
 button {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: .25em;
     font-size: 14px;
     cursor: pointer;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: var(--primary-hover-color);
 }
 
 .secondary-button {
@@ -63,15 +80,6 @@ button {
     color: #333;
 }
 
-.primary-button {
-    background-color: #28a745;
-    color: #fff;
-}
-
 .secondary-button:hover {
     background-color: #bbb;
-}
-
-.primary-button:hover {
-    background-color: #218838;
 }

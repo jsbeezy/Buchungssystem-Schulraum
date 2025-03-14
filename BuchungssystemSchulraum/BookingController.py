@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views import View
+from django.views.generic import TemplateView
+
 from .models import Booking
 from .models import Room
 from django.contrib.auth.models import User
@@ -14,8 +16,8 @@ class BookingListView(View):
         # todo: hier template einfügen oder so? oder vlt lieber getAll und getById/getByName als Routen, die nur eine jsonResponse geben fürs FE
         return render(request, 'bookings.html', context)
 
-class AddBookingView(View):
-    def post(self, request):
+class AddBookingView(TemplateView):
+    def post(self, request, **kwargs):
         room_id = request.POST.get('room')
         user_id = request.POST.get('user')
         from_time = request.POST.get('fromTime')
@@ -31,7 +33,10 @@ class AddBookingView(View):
             toTime=datetime.strptime(to_time, '%Y-%m-%d %H:%M:%S')
         )
 
-        return JsonResponse({"message": "Booking added", "id": booking.id})
+        context = super().get_context_data(**kwargs)
+        context["booking"] = booking
+        context["action"] = "ADD"
+        return render(request, "booking-feedback.html", context)
 
 class EditBookingView(View):
     def post(self, request, id):

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'booking-feedback.css' %}">
+
+    <div class="container">
+        <span>
+            Klassenraum
+            <span class="bold">{{ booking.name }}</span>
+            von
+            <span class="bold">{{ booking.from_time|date:"d. M Y" }}</span>
+            bis
+            <span class="bold">{{ booking.to_time|date:"d. M Y" }}</span>
+            {% if method == "ADD" %}
+                gebucht.
+            {% elif method == "EDIT" %}
+                aktualisiert.
+            {% elif method == "DELETE" %}
+                gelöscht.
+            {% endif %}
+        </span>
+        <form
+            method="get"
+            action="{% url 'index' %}">
+            <button type="submit" class="secondary-button">Zurück zur Startseite</button>
+        </form>
+    </div>
+
+{% endblock content %}

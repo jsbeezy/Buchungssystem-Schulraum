@@ -16,8 +16,8 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: .1em;
-    background-color: var(--room-color);
-    border: 1px solid var(--room-border-color);
+    background-color: var(--primary-color);
+    border: 1px solid black;
     border-radius: .25em;
     font-size: 1.5vmax;
     font-weight: bold;
@@ -27,5 +27,5 @@
 }
 
 .class-room:hover {
-    background-color: var(--room-hover-color);
+    background-color: var(--primary-hover-color);
 }

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.views import generic
 class HomeView(generic.TemplateView):
     template_name = "index.html"
@@ -58,4 +60,12 @@ class ClassRoomOptionsView(generic.TemplateView):
         return context
 
 class ClassRoomBookingsView(generic.TemplateView):
-    render_template = "class-room-bookings.html"
+    template_name = "class-room-bookings.html"
+
+    def get_context_data(self, id, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["bookings"] = [
+            {"id": 0, "name": "Raum1", "from_time": datetime(2025, 1, 1), "to_time": datetime(2025, 12, 1)},
+            {"id": 1, "name": "Raum2", "from_time": datetime(2025, 1, 5), "to_time": datetime(2025, 12, 5)}
+        ]
+        return context

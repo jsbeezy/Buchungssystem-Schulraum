@@ -10,7 +10,9 @@ app_name = "BuchungssystemSchulraum"
 urlpatterns = [
     path("", views.HomeView.as_view(), name="index"),
     path('admin/', admin.site.urls),
-    path('class-room/<int:id>/', views.ClassRoomView.as_view(), name='view_room'),
+    path('class-room/<int:id>/add-booking', views.ClassRoomAddBookingView.as_view(), name='class_room_add_booking'),
+    path('class-room/<int:id>/options', views.ClassRoomOptionsView.as_view(), name='class_room_options_select'),
+    path('class-room/<int:id>/bookings', views.ClassRoomBookingsView.as_view(), name='class_room_bookings'),
     path('bookings', BookingController.BookingListView.as_view(), name='view_bookings'),
     path('bookings/<int:id>/add/', BookingController.AddBookingView.as_view(), name='add_booking'),
     path('bookings/<int:id>/edit', BookingController.EditBookingView.as_view(), name='edit_booking'),
