@@ -11,8 +11,10 @@
 <body>
     <div class="navbar">
         {% if user.is_authenticated %}
+            {% if user.is_staff %}
             <a class="firstTile" href="{% url 'index' %}">Startseite</a>
             <a class="secondTile" href="{% url 'view_bookings' %}">Deine Buchungen</a>
+            {% endif %}
             {% block navbarCenter %}
                 <span class="centerTile">Raumübersicht</span>
             {% endblock %}

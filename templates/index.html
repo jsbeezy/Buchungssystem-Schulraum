@@ -7,6 +7,7 @@
 
     <div class="map">
         {% for class_room in class_rooms %}
+
             <form
                 method="get"
                 action="{% url 'class_room_options_select' id=class_room.id %}"

@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import permission_required, user_passes_test
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import TemplateView
@@ -10,6 +11,9 @@ from datetime import datetime, date
 
 class BookingForUserView(View):
     def get(self, request):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
+
         bookings = Booking.objects.filter(user = request.user)
         context = {"bookings": bookings}
 
@@ -17,6 +21,8 @@ class BookingForUserView(View):
 
 class AddBookingView(TemplateView):
     def post(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         from_time = request.POST.get('fromTime')
         to_time = request.POST.get('toTime')
 
@@ -36,6 +42,8 @@ class AddBookingView(TemplateView):
 
 class ShowEditBookingView(TemplateView):
     def get(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         booking = get_object_or_404(Booking, id=id)
 
         context = {"booking": booking, "action": "EDIT", "class_room": booking.room}
@@ -43,6 +51,8 @@ class ShowEditBookingView(TemplateView):
 
 class EditBookingView(TemplateView):
     def post(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         booking = get_object_or_404(Booking, id=id)
         oldFromTime = booking.fromTime
         oldToTime = booking.toTime
@@ -61,6 +71,8 @@ class EditBookingView(TemplateView):
 
 class DeleteBookingView(TemplateView):
     def post(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         booking = get_object_or_404(Booking, id=id)
         booking.delete()
 

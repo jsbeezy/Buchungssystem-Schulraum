@@ -69,6 +69,8 @@ class HomeView(LoginRequiredMixin, TemplateView):
 class ClassRoomAddBookingView(TemplateView):
 
     def get(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         context = {"class_room": Room.objects.get(id=id), "action": "ADD"}
         return render(request, 'class-room-add-booking.html', context)
 
@@ -76,6 +78,8 @@ class ClassRoomAddBookingView(TemplateView):
 class ClassRoomOptionsView(TemplateView):
 
     def get(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         context = {"class_room": Room.objects.get(id=id)}
         return render(request, 'class-room-option-select.html', context)
 
@@ -83,5 +87,7 @@ class ClassRoomOptionsView(TemplateView):
 class ClassRoomBookingsView(TemplateView):
 
     def get(self, request, id):
+        if not request.user.is_staff:
+            return render(request, "no-permission.html")
         context = {"bookings": Booking.objects.filter(room_id=id), "class_room": Room.objects.get(id= id)}
         return render(request, 'class-room-bookings.html', context)
