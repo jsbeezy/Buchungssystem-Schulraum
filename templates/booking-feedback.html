@@ -7,15 +7,15 @@
 
 	<div class="container">
         <span>
-          {% if action == "DELETE" %}
+          {% if action == "DELETE" or action == "EDIT" %}
             Buchung für
           {% endif %}
 	        Klassenraum
             <span class="bold">{{ booking.room.name }}</span>
-            von
-            <span class="bold">{{ booking.fromTime|date:"d. M Y H:m" }}</span>
+            <br><br>von
+            <p><span class="bold">{{ booking.fromTime|date:"d.m.Y H:i" }} Uhr</span></p>
             bis
-            <span class="bold">{{ booking.toTime|date:"d. M Y H:m" }}</span>
+            <p><span class="bold">{{ booking.toTime|date:"d.m.Y H:i" }} Uhr</span></p>
 	        {% if action == "ADD" %}
 		        gebucht.
 	        {% elif action == "EDIT" %}
@@ -24,11 +24,24 @@
 		        gelöscht.
 	        {% endif %}
         </span>
-		<form
+        <br>
+
+        {% if action == "DELETE" or action == "EDIT" %}
+            <form
+				method="get"
+				action="{% url 'view_bookings' %}">
+            <button type="submit" class="secondary-button">Zurück zu meinen Buchungen</button>
+        </form>
+        {% endif %}
+
+        {% if action == "ADD" %}
+        <form
 				method="get"
 				action="{% url 'index' %}">
-			<button type="submit" class="secondary-button">Zurück zur Startseite</button>
-		</form>
+            <button type="submit" class="secondary-button">Zurück zur Startseite</button>
+        </form>
+        {% endif %}
+
 	</div>
 
 {% endblock content %}

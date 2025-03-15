@@ -1,10 +1,6 @@
-from datetime import datetime
-
-from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Room, Booking
-
+from .models import Room
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
@@ -64,30 +60,3 @@ class HomeView(LoginRequiredMixin, TemplateView):
             positions[class_room_id] = {"top": top, "left": left}
 
         return positions
-
-
-class ClassRoomAddBookingView(TemplateView):
-
-    def get(self, request, id):
-        if not request.user.is_staff:
-            return render(request, "no-permission.html")
-        context = {"class_room": Room.objects.get(id=id), "action": "ADD"}
-        return render(request, 'class-room-add-booking.html', context)
-
-
-class ClassRoomOptionsView(TemplateView):
-
-    def get(self, request, id):
-        if not request.user.is_staff:
-            return render(request, "no-permission.html")
-        context = {"class_room": Room.objects.get(id=id)}
-        return render(request, 'class-room-option-select.html', context)
-
-
-class ClassRoomBookingsView(TemplateView):
-
-    def get(self, request, id):
-        if not request.user.is_staff:
-            return render(request, "no-permission.html")
-        context = {"bookings": Booking.objects.filter(room_id=id), "class_room": Room.objects.get(id= id)}
-        return render(request, 'class-room-bookings.html', context)
