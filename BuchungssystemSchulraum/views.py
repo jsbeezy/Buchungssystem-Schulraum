@@ -83,5 +83,5 @@ class ClassRoomOptionsView(TemplateView):
 class ClassRoomBookingsView(TemplateView):
 
     def get(self, request, id):
-        context = {"bookings": Booking.objects.filter(room_id=id)}
+        context = {"bookings": Booking.objects.filter(room_id=id), "class_room": Room.objects.get(id= id)}
         return render(request, 'class-room-bookings.html', context)

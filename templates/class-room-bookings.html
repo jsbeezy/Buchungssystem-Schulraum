@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
+{% block navbarCenter %}
+    <span class="centerTile">Buchungen für Raum {{ class_room.name }}</span>
+{% endblock navbarCenter %}
+
 {% block content %}
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'class-room-bookings.css' %}">
 
     <div class="bookings-container">
-        {% if bookings %}
-        	<h3 class="center">Buchungen für Klassenraum {{ bookings.0.room.name }}</h3>
-        {% endif %}
         {% for booking in bookings %}
             <div class="card">
                 <div class="time-fields">

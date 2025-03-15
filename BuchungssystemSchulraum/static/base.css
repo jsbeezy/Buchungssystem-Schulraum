@@ -27,13 +27,58 @@ body {
 
 .navbar {
     background-color: var(--primary-color);
+    font-size: 20px;
+    font-weight: bold;
     height: 5em;
     display: grid;
     grid-auto-flow: column;
     justify-items: center;
     align-items: center;
     margin-bottom: 1em;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+}
+
+.navbar a {
+    border: 3px solid black;
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .firstTile {
+    margin-right: 8px;
+    grid-column: 1;
+}
+
+.navbar .secondTile {
+    margin-left: 8px;
+    grid-column: 2;
+}
+
+.navbar .centerTile {
+    font-size: 24px;
+    grid-column: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar .secondToLastTile {
+    grid-column: 8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar .lastTile {
+    grid-column: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a {
@@ -62,6 +107,10 @@ button, input[type="button"] {
     font-size: 14px;
     cursor: pointer;
     font-weight: bold;
+}
+
+button:hover, input[type="button"]:hover {
+    background-color: #cccccc;
 }
 
 .primary-button {

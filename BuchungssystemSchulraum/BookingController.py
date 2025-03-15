@@ -8,31 +8,25 @@ from .models import Room
 from django.contrib.auth.models import User
 from datetime import datetime, date
 
-
-class BookingListView(View):
+class BookingForUserView(View):
     def get(self, request):
-        bookings = Booking.objects.all()
+        bookings = Booking.objects.filter(user = request.user)
         context = {"bookings": bookings}
+
         return render(request, 'bookings.html', context)
 
 class AddBookingView(TemplateView):
     def post(self, request, id):
-        room_id = request.POST.get('room')
-        # uncomment once users are available
-        # user_id = request.POST.get('user')
-        user_id = User.objects.get(id=1).id
-
         from_time = request.POST.get('fromTime')
         to_time = request.POST.get('toTime')
 
         from_datetime, to_datetime = buildDatetime(from_time, to_time)
 
-        room = get_object_or_404(Room, id=room_id)
-        user = get_object_or_404(User, id=user_id)
+        room = get_object_or_404(Room, id=id)
 
         booking = Booking.objects.create(
             room=room,
-            user=user,
+            user=request.user,
             fromTime=from_datetime,
             toTime=to_datetime
         )
@@ -44,7 +38,7 @@ class ShowEditBookingView(TemplateView):
     def get(self, request, id):
         booking = get_object_or_404(Booking, id=id)
 
-        context = {"booking": booking, "action": "EDIT"}
+        context = {"booking": booking, "action": "EDIT", "class_room": booking.room}
         return render(request, "class-room-add-booking.html", context)
 
 class EditBookingView(TemplateView):

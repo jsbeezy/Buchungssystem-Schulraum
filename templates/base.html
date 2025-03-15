@@ -11,12 +11,17 @@
 <body>
     <div class="navbar">
         {% if user.is_authenticated %}
-            <a href="{% url 'index' %}">Startseite</a>
-            <a href="{% url 'view_bookings' %}">Deine Buchungen</a>
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            <a class="firstTile" href="{% url 'index' %}">Startseite</a>
+            <a class="secondTile" href="{% url 'view_bookings' %}">Deine Buchungen</a>
+            {% block navbarCenter %}
+                <span class="centerTile">Raumübersicht</span>
+            {% endblock %}
+
+            <form class="lastTile" action="{% url 'logout' %}" method="post" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
             </form>
+            <span class="secondToLastTile">Eingeloggt als: <br>{{ user.username }}</span>
         {% else %}
             <a href="{% url 'login' %}">Login</a>
         {% endif %}
