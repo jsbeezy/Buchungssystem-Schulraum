@@ -1,14 +1,16 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Room, Booking
 
 
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
     counter = 0
     grid_size = 5
+    login_url = "/login/"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,17 +65,20 @@ class HomeView(TemplateView):
 
         return positions
 
+
 class ClassRoomAddBookingView(TemplateView):
 
     def get(self, request, id):
         context = {"class_room": Room.objects.get(id=id), "action": "ADD"}
         return render(request, 'class-room-add-booking.html', context)
 
+
 class ClassRoomOptionsView(TemplateView):
 
     def get(self, request, id):
         context = {"class_room": Room.objects.get(id=id)}
         return render(request, 'class-room-option-select.html', context)
+
 
 class ClassRoomBookingsView(TemplateView):
 
