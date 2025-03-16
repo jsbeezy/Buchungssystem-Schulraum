@@ -14,6 +14,7 @@ def generate_initial_data(apps, schema_editor):
     superuser = User.objects.create_user(username="admin", password="123", is_staff=True, is_superuser=True,
                                          last_login=datetime.now())
 
+    # Diese Raumdaten sind abgestimmt auf die feste "Raumstruktur" unserer hypothetischen Schule
     rooms_data = [
         {"name": "102", "seats": 25, "hasBeamer": False},
         {"name": "103", "seats": 30, "hasBeamer": False},
