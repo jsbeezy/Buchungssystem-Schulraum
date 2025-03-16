@@ -14,6 +14,8 @@
             {% if user.is_staff %}
             <a class="firstTile" href="{% url 'index' %}">Übersicht &#127979;</a>
             <a class="secondTile" href="{% url 'view_bookings' %}">Deine Buchungen &#128366;</a>
+
+            {% if request.path == '/' %}
                 <form class="thirdTile" method="get" action="{% url 'index' %}">
                     <label>
                         <input type="checkbox" name="hasBeamer" value="true" {% if request.GET.hasBeamer == "true" %}checked{% endif %}
@@ -27,6 +29,8 @@
                                onchange="this.form.submit()">
                     </label>
                 </form>
+            {% endif %}
+
             {% endif %}
             {% block navbarCenter %}
                 <span class="centerTile">Raumübersicht</span>
