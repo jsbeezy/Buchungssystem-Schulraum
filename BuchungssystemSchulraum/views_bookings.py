@@ -84,6 +84,10 @@ class AddBookingView(View):
         to_time = request.POST.get('toTime')
         from_time = request.POST.get('fromTime')
 
+        if from_time > to_time:
+            return render(request, "error-page.html",
+                          {"error_message": "Die Anfangszeit darf nicht nach der Endzeit der Buchung beginnen."})
+
         to_time_parsed = datetime.strptime(to_time, '%Y-%m-%dT%H:%M')
         from_time_parsed = datetime.strptime(from_time, '%Y-%m-%dT%H:%M')
 
@@ -95,7 +99,8 @@ class AddBookingView(View):
         ).exists()
 
         if conflicting_booking_exists:
-            return render(request, "error-page.html", {"error_message": "Dieser Raum ist bereits im angegebenen Zeitraum gebucht."})
+            return render(request, "error-page.html",
+                          {"error_message": "Dieser Raum ist bereits im angegebenen Zeitraum gebucht."})
 
         booking = Booking.objects.create(
             room=room, user=request.user, fromTime=from_time_parsed, toTime=to_time_parsed
@@ -122,6 +127,10 @@ class EditBookingView(View):
 
         from_time = request.POST.get('fromTime')
         to_time = request.POST.get('toTime')
+
+        if from_time > to_time:
+            return render(request, "error-page.html",
+                          {"error_message": "Die Anfangszeit darf nicht nach der Endzeit der Buchung beginnen."})
 
         from_time_parsed = datetime.strptime(from_time, '%Y-%m-%dT%H:%M')
         to_time_parsed = datetime.strptime(to_time, '%Y-%m-%dT%H:%M')
