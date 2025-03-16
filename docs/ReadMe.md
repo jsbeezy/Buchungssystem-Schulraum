@@ -64,6 +64,7 @@ Das System ist jetzt bereit zur Nutzung!
 - Übersicht der eigenen, bestehenden Buchungen inkl. Filter nach Datum
 - Verwaltung der eigenen Buchungen (Bearbeiten, Löschen)
 - Validierung beim Erstellen und Bearbeiten von Buchungen, sodass es nicht zu Überschneidungen kommen kann
+- Eine Adminoberfläche
 
 
 ## Weiteres
