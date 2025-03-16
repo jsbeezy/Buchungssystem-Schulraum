@@ -7,12 +7,13 @@
 
     <div class="map">
         {% for class_room in class_rooms %}
-
             <form
                 method="get"
                 action="{% url 'class_room_options_select' id=class_room.id %}"
                 style="grid-row: {{ class_room.top|add:1 }}; grid-column: {{ class_room.left|add:1 }};">
-                <button type="submit" class="class-room">
+
+                <button type="submit" class="{% if class_room.matches %}class-room{% else %}class-room-inactive{% endif %}"
+                    {% if not class_room.matches %}disabled{% endif %}>
                     {{ class_room.name }}
                 </button>
             </form>

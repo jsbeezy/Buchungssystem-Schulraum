@@ -9,7 +9,8 @@
     border-radius: .25em;
 }
 
-.class-room {
+.class-room,
+.class-room-inactive {
     display: grid;
     align-items: center;
     justify-content: center;
@@ -24,6 +25,13 @@
     width: var(--tile-size);
     height: var(--tile-size);
     box-sizing: border-box;
+}
+
+.class-room-inactive {
+    cursor: default;
+    background-color: rgba(187, 187, 187, 0.68);
+    color: rgba(68, 68, 68, 0.62);
+    border: 1px solid #999;
 }
 
 .class-room:hover {

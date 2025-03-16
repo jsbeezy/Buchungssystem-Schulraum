@@ -22,7 +22,6 @@ python manage.py runserver
 
 TO-DOs:
 - beim Buchen von Räumen Error, wenn für den Timeslot schon eine Buchung vorhanden ist und entsprechend nicht persistieren
-- Suchfunktion für Räume anhand von hasBeamer und seats properties (z.B.: hat der Raum einen Beamer? Hat er mindestens X Sitzplätze?)
 - Serienbuchung (z.B. checkBox "Serienbuchung?" und falls angehakt -> Enddatum der Serienbuchung angeben, dann wird jede Woche zur selben Zeit gebucht)
 
 Nice-to-have:

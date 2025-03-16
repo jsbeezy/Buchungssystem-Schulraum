@@ -107,3 +107,11 @@ class DeleteBookingView(TemplateView):
 
         context = {"booking": booking, "action": "DELETE"}
         return render(request, "booking-feedback.html", context)
+
+class RoomSearchView(TemplateView):
+    def get(self, request):
+        permission_check = check_permission(request)
+        if permission_check:
+            return permission_check
+
+        return render(request, "room-search.html")
