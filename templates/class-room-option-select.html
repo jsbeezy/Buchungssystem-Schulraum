@@ -9,7 +9,18 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'class-room-option-select.css' %}">
 
+    <label>Dieser Raum hat <strong>{{ class_room.seats }}</strong> Sitzplätze.</label>
+    <br>
+    {% if class_room.hasBeamer %}
+        <label>Dieser Raum <strong>besitzt einen</strong> Beamer.</label>
+    {% else %}
+        <label>Dieser Raum <strong>besitzt keinen</strong> Beamer.</label>
+    {% endif %}
+    <br>
+
     <h3>Optionen</h3>
+
+
     <div class="selection-container">
         <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
         <form

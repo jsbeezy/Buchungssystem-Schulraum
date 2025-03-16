@@ -23,7 +23,6 @@ urlpatterns = [
     path('bookings/<int:id>/edit', views_bookings.EditBookingView.as_view(), name='edit_booking'),
     path('bookings/<int:id>', views_bookings.ShowEditBookingView.as_view(), name='show_edit_booking'),
     path('bookings/<int:id>/delete', views_bookings.DeleteBookingView.as_view(), name='delete_booking'),
-    path('class-room/search', views_bookings.RoomSearchView.as_view(), name='room_search'),
 ]
 
 app_name = "BuchungssystemSchulraum"
