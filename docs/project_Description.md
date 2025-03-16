@@ -2,19 +2,20 @@
 
 ## Buchungssystem - Schulraum
 
-Das "Buchungssystem - Schulraum" ist eine Webanwendung zur Verwaltung und Buchung von Schulräumen. Das System ermöglicht es Nutzern, freie Räume zu suchen, Buchungen vorzunehmen und bestehende Buchungen zu verwalten. Dabei gibt es verschiedene Benutzerrollen mit unterschiedlichen Berechtigungen.
+In unserem Projekt bauen wir ein Schulraum-Buchssystem. Dabei wird eine Schule grafisch wie eine Blaupause dargestellt, man kann auf die einzelnen Räume klicken und diesen Raum für vorbestimmte Zeitslots buchen.
 
 ### Must-Have Features
-- Nutzer können sich registrieren und anmelden.
-- Räume mit Eigenschaften wie Sitzplätze und Beamer-Verfügbarkeit können verwaltet werden.
-- Buchungen können erstellt, bearbeitet und gelöscht werden.
-- Nutzer können ihre eigenen Buchungen einsehen.
-- Administratoren haben die Möglichkeit, alle Buchungen zu verwalten.
-- Doppelbuchungen sollen verhindert werden.
-- Suche nach Räumen anhand von Kriterien wie Sitzplätze und Beamer.
+- Klickbare Karte mit Schulräumen
+- Verwaltung der Schulräume
+- Ermöglichung der Buchung und Entfernung der Buchung der Zeitslots eines Raumes
+  - Erstellen, Ändern und Löschen
+- Drei Benutzerrollen: Admin, Lehrer und Schüler
+  - Adminoberfläche
+- Übersicht der eigenen Buchungen
+- Suche/Filterung der Räume nach Raum-Metadaten (bspw. Größe, Ausstattung usw.)
 
 ### Nice-To-Have Features
-- Kein komplexes Rechte- und Rollensystem außerhalb von Schüler, Lehrer und Admin.
-- Keine automatische E-Mail-Benachrichtigung.
-- Keine Integrationen mit Drittanbietern.
+- E-Mailbestätigung bei Buchung/Löschung
+- Export der Buchung als Termin in Kalender-Apps (z. B. Google Calendar)
+- Feedbackfunktion für Buchungen
 

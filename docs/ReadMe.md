@@ -4,18 +4,18 @@
 
 ### Voraussetzungen
 - Python 3.x
-- Django
-- SQLite (oder ein anderes unterstütztes DBMS)
+- Pip
 
 ### Installation
 1. Repository klonen:
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/jsbeezy/Buchungssystem-Schulraum.git
    cd buchungssystem-schulraum
    ```
 2. Virtuelle Umgebung erstellen und aktivieren:
    ```sh
    python -m venv venv
+   
    source venv/bin/activate  # macOS/Linux
    venv\Scripts\activate     # Windows
    ```
@@ -23,7 +23,7 @@
    ```sh
    pip install -r requirements.txt
    ```
-4. Datenbank migrieren und Dummy-User erstellen:
+4. Datenbank migrieren (Hier werden auch die Daten für Räume und Testuser erstellt):
    ```sh
    python manage.py migrate
    ```
@@ -34,14 +34,14 @@
 
 ## Nutzerrollen
 
-| Rolle     | Berechtigungen |
-|-----------|----------------|
-| **Schüler** | Räume suchen, eigene Buchungen verwalten |
-| **Lehrer**  | Räume suchen, eigene Buchungen verwalten, Buchungen für Klassen vornehmen |
-| **Admin**   | Räume verwalten, alle Buchungen einsehen und bearbeiten |
+| Rolle     | Berechtigungen                                                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Schüler** | Kann den Raumplan sehen. Ansonsten machtlos.                                                                                      |
+| **Lehrer**  | Kann den Raumplan sehen, Räume anhand von Sitzplätzen und Beamerbesitz suchen, Raumbuchungen einsehen, eigene Buchungen verwalten |
+| **Admin**   | Alles, was der Lehrer kann, plus Zugriff auf die Adminoberfläche /admin zu Verwaltungszwecken                                     |
 
 ## Dummy-User
-Die folgenden Benutzer werden automatisch während der Migration erstellt:
+Die folgenden Benutzer werden automatisch während der Migration erstellt und stehen zum Testen der Anwendung zur Verfügung:
 
 | Nutzername | Passwort | Rolle |
 |------------|---------|-------|
@@ -51,3 +51,21 @@ Die folgenden Benutzer werden automatisch während der Migration erstellt:
 
 Das System ist jetzt bereit zur Nutzung!
 
+
+## Folgende Funktionalitäten bietet diese Anwendung:
+
+- Login-Funktionalität
+- Die oben erwähnten Berechtigungsstufen
+- Schulraumübersicht
+- Filter für die Schulraumübersicht, die bei der Suche nach Räumen mit mindestens X Sitzplätzen und Räumen mit Beamern helfen
+- Raum Detailansicht, wo die Raumdaten angezeigt werden
+- Buchungsübersicht für einen Raum inkl. Filter nach Datum
+- Buchungserstellung für einen Raum
+- Übersicht der eigenen, bestehenden Buchungen inkl. Filter nach Datum
+- Verwaltung der eigenen Buchungen (Bearbeiten, Löschen)
+- Validierung beim Erstellen und Bearbeiten von Buchungen, sodass es nicht zu Überschneidungen kommen kann
+
+
+## Weiteres
+- Eine Registrierung gibt es nicht. Die Erstellung der Nutzerkonten wird von der Schulverwaltung (Admin im Admininterface) übernommen
+- Die Räume in unserer hypothetischen Schule sind fest, es lassen sich keine neuen Räume anlegen (technisch gesehen schon im Admininterface, allerdings geht unsere Implementierung von dieser festen Raumstruktur aus)
