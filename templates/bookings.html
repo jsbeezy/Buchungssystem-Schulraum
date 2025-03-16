@@ -3,6 +3,13 @@
 
 {% block navbarCenter %}
     <span class="centerTile">Deine Buchungen</span>
+    <form class="thirdTile" method="get" action="{% url 'view_bookings' %}">
+            <div>
+                <label for="booking-date">Datum:</label><br>
+                <input type="date" id="booking-date" name="date" value="{{ selected_date|date:'Y-m-d' }}"
+                       onchange="this.form.submit()">
+            </div>
+        </form>
 {% endblock navbarCenter %}
 
 {% block content %}
@@ -40,7 +47,12 @@
             </div>
             </div>
         {% empty %}
-            <h3>Du hast keine Buchungen getätigt</h3>
+            {% if selected_date != null %}
+                <h3>Du hast keine Buchungen am {{ selected_date|date:"d.m.Y" }} getätigt</h3>
+            {% else %}
+                <h3>Du hast keine Buchungen getätigt</h3>
+            {% endif %}
+
             <form
 	            method="get"
 	            action="{% url 'index' %}">

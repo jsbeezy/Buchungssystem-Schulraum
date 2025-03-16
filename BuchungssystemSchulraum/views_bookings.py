@@ -36,10 +36,21 @@ class ClassRoomBookingsView(TemplateView):
         if failed_check_view:
             return failed_check_view
 
-        bookings = Booking.objects.filter(room_id=id)
-        context = {"bookings": bookings, "class_room": get_object_or_404(Room, id=id)}
+        selected_date = request.GET.get('date')
+        room = get_object_or_404(Room, id=id)
+
+        # Wenn ein Datum im Datepicker gewählt wurde, werden nur die Buchungen des Raumes für das gewählte Datum zurückgegeben
+        # Ansonsten geben wir alle Buchungen des Raumes zurück
+        if selected_date:
+            selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
+            bookings = Booking.objects.filter(room=room, fromTime__date=selected_date)
+        else:
+            bookings = Booking.objects.filter(room=room)
+
+        context = {"bookings": bookings, "class_room": room, "selected_date": selected_date if selected_date else None}
 
         return render(request, 'class-room-bookings.html', context)
+
 
 class BookingForUserView(View):
     def get(self, request):
@@ -47,8 +58,20 @@ class BookingForUserView(View):
         if failed_check_view:
             return failed_check_view
 
-        bookings = Booking.objects.filter(user=request.user)
-        context = {"bookings": bookings}
+        selected_date = request.GET.get('date')
+
+        # Wenn ein Datum im Datepicker gewählt wurde, werden nur die Buchungen des Users für das gewählte Datum zurückgegeben
+        # Ansonsten geben wir alle Buchungen des Users zurück
+        if selected_date:
+            selected_date = datetime.strptime(selected_date, '%Y-%m-%d').date()
+            bookings = Booking.objects.filter(user=request.user, fromTime__date=selected_date)
+        else:
+            bookings = Booking.objects.filter(user=request.user)
+
+        context = {
+            "bookings": bookings,
+            "selected_date": selected_date if selected_date else None
+        }
 
         return render(request, 'bookings.html', context)
 
@@ -66,12 +89,12 @@ class AddBookingView(View):
 
         room = get_object_or_404(Room, id=id)
 
-        # Überprüfung, ob bereits eine Buchung für den gewählten Zeitraum existiert
-        conflicting_booking = Booking.objects.filter(
+        # Überprüfung, ob sich die Buchung mit einer bereits existierenden überschneidet
+        conflicting_booking_exists = Booking.objects.filter(
             room=room, fromTime__lt=to_time_parsed, toTime__gt=from_time_parsed
         ).exists()
 
-        if conflicting_booking:
+        if conflicting_booking_exists:
             return render(request, "error-page.html", {"error_message": "Dieser Raum ist bereits im angegebenen Zeitraum gebucht."})
 
         booking = Booking.objects.create(
@@ -105,7 +128,7 @@ class EditBookingView(View):
 
         booking = get_object_or_404(Booking, id=id)
 
-        # Überprüfung, ob schon eine Buchung für den gewählten Zeitraum existiert, die NICHT dieselbe Buchung ist
+        # Überprüfung, ob sich eine bereits existierende Buchung überschneidet, die NICHT dieselbe Buchung ist
         conflicting_booking = Booking.objects.filter(
             room=booking.room, fromTime__lt=to_time_parsed, toTime__gt=from_time_parsed
         ).exclude(id=booking.id).exists()

@@ -2,6 +2,13 @@
 
 {% block navbarCenter %}
     <span class="centerTile">Buchungen für Raum {{ class_room.name }}</span>
+    <form class="thirdTile" method="get" action="{% url 'class_room_bookings' id=class_room.id %}">
+            <div>
+                <label for="booking-date">Datum:</label><br>
+                <input type="date" id="booking-date" name="date" value="{{ selected_date|date:'Y-m-d' }}"
+                       onchange="this.form.submit()">
+            </div>
+        </form>
 {% endblock navbarCenter %}
 
 {% block content %}
@@ -28,7 +35,11 @@
             </div>
             </div>
         {% empty %}
-            <h3>Keine Buchungen für diesen Klassenraum vorhanden</h3>
+            {% if selected_date != null %}
+                <h3>Keine Buchungen für diesen Klassenraum am {{ selected_date|date:"d.m.Y" }} vorhanden</h3>
+            {% else %}
+                <h3>Keine Buchungen für diesen Klassenraum vorhanden</h3>
+            {% endif %}
             <div class="buttons">
 	            <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
 		          <form
