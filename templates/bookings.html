@@ -53,12 +53,26 @@
                 <h3>Du hast keine Buchungen getätigt</h3>
             {% endif %}
 
-            <form
-	            method="get"
-	            action="{% url 'index' %}">
-	            <button type="submit" class="secondary-button">Zurück zur Startseite</button>
-            </form>
+            <div class="buttons">
+	            <input class="secondary-button" type="button" value="Zurück" onClick="resetDateAndSubmit()">
+		          <form
+		            method="get"
+		            action="{% url 'index' %}">
+		            <button type="submit" class="secondary-button">Startseite</button>
+	            </form>
+            </div>
         {% endfor %}
     </div>
 
+    <script>
+        function resetDateAndSubmit() {
+
+        var form = document.querySelector('form');
+        var dateInput = document.querySelector('#booking-date');
+
+        dateInput.value = null;
+
+        form.submit();
+        }
+    </script>
 {% endblock content %}

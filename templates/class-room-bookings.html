@@ -41,7 +41,7 @@
                 <h3>Keine Buchungen für diesen Klassenraum vorhanden</h3>
             {% endif %}
             <div class="buttons">
-	            <input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
+	            <input class="secondary-button" type="button" value="Zurück" onClick="resetDateAndSubmit()">
 		          <form
 		            method="get"
 		            action="{% url 'index' %}">
@@ -51,4 +51,16 @@
         {% endfor %}
     </div>
 
+
+    <script>
+        function resetDateAndSubmit() {
+
+        var form = document.querySelector('form');
+        var dateInput = document.querySelector('#booking-date');
+
+        dateInput.value = null;
+
+        form.submit();
+        }
+    </script>
 {% endblock content %}

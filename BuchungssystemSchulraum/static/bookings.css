@@ -48,6 +48,7 @@
 }
 
 .buttons {
+    column-gap: 1em;
     display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
