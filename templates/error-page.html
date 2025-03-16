@@ -1,7 +1,8 @@
 ﻿{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-
-    <h3>Du bist nicht zum Einsehen dieser Seite berechtigt.</h3>
+    <link rel="stylesheet" href="{% static 'error-page.css' %}">
+    <h3>{{ error_message }}</h3>
 	<input class="secondary-button" type=button value="Zurück" onClick="history.go(-1);">
 {% endblock content %}

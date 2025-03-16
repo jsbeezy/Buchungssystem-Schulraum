@@ -8,6 +8,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
     grid_size = 5
     login_url = "/login/"
 
+    # Generiert die äußerden Ringe aus Räumen für die Gebäudeübersicht
     def generate_room_positions(self):
         room_positions = {}
 
