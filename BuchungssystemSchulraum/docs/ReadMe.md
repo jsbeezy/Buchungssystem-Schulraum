@@ -23,15 +23,11 @@
    ```sh
    pip install -r requirements.txt
    ```
-4. Datenbank migrieren:
+4. Datenbank migrieren und Dummy-User erstellen:
    ```sh
    python manage.py migrate
    ```
-5. Superuser erstellen (optional für Admin-Zugang):
-   ```sh
-   python manage.py createsuperuser
-   ```
-6. Server starten:
+5. Server starten:
    ```sh
    python manage.py runserver
    ```
@@ -45,11 +41,13 @@
 | **Admin**   | Räume verwalten, alle Buchungen einsehen und bearbeiten |
 
 ## Dummy-User
+Die folgenden Benutzer werden automatisch während der Migration erstellt:
+
 | Nutzername | Passwort | Rolle |
 |------------|---------|-------|
-| schueler1  | test123 | Schüler |
-| lehrer1    | test123 | Lehrer |
-| admin1     | admin123 | Admin |
+| schüler    | 123     | Schüler |
+| lehrer     | 123     | Lehrer |
+| admin      | 123     | Admin |
 
 Das System ist jetzt bereit zur Nutzung!
 
